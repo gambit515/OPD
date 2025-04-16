@@ -1,0 +1,715 @@
+.fixed-header,body {
+    background-color: #fff
+}
+
+body {
+    margin: 0;
+    font-family: Arial,sans-serif;
+    color: #000;
+    line-height: 1.6
+}
+
+.fixed-header .logo:hover,.fixed-header .nav-links a:hover,a:hover {
+    color: #333
+}
+
+.fixed-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0,0,0,.1);
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5vw;
+    box-sizing: border-box
+}
+
+.fixed-header .logo,.fixed-header .nav-links a,a {
+    color: #000;
+    text-decoration: none;
+    transition: color .3s ease
+}
+
+.fixed-header .logo {
+    font-size: 1.8rem;
+    font-weight: 700
+}
+
+.fixed-header .nav-links {
+    display: flex;
+    gap: 30px
+}
+
+.fixed-header .nav-links a {
+    font-size: 1.2rem;
+    position: relative
+}
+
+.fixed-header .nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 100%;
+    height: 2px;
+    background-color: #000;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .3s ease
+}
+
+.fixed-header .nav-links a:hover::after {
+    transform: scaleX(1)
+}
+
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px
+}
+
+.category-header {
+    text-align: left;
+    margin-top: 40px;
+    margin-bottom: 40px
+}
+
+.category-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    color: #333
+}
+
+.category-header p {
+    font-size: 1.2rem;
+    color: #666
+}
+
+.single-record .record-card {
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    padding: 30px;
+    text-align: left;
+    transition: transform .3s ease,box-shadow .3s ease
+}
+
+.single-record .record-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,.1)
+}
+
+.single-record .record-card h1 {
+    margin-top: 0;
+    font-size: 2rem;
+    color: #333
+}
+
+.single-record .record-card h2 {
+    font-size: 1.5rem;
+    color: #333
+}
+
+.single-record .record-card p {
+    margin: 15px 0;
+    font-size: 1.1rem;
+    color: #333
+}
+
+.single-record .record-card .record-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 20px 0
+}
+
+.single-record .record-card .video-list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px
+}
+
+.single-record .record-card iframe {
+    width: 100%;
+    height: 600px;
+    border: 0;
+    border-radius: 10px
+}
+
+.record-footer {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-top: 1px solid #ddd;
+    text-align: left
+}
+
+.record-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 10px
+}
+
+.date {
+    font-size: 1rem;
+    color: #666
+}
+
+.category {
+    display: flex;
+    align-items: left;
+    gap: 10px
+}
+
+.category-label,.category-link {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #333
+}
+
+.category-link {
+    color: #000
+}
+
+.tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px
+}
+
+.tag {
+    background-color: #e0e0e0;
+    color: #000;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: background-color .3s ease
+}
+
+footer {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 1.1rem
+}
+.single-record .record-card {
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    padding: 30px;
+    text-align: left;
+    transition: none;
+}
+.single-record .record-card:hover {
+    transform: none;
+    box-shadow: none;
+}
+footer a {
+    color: #ffffff; /* Белый цвет текста */
+    text-decoration: none; /* Убираем подчеркивание */
+    transition: color 0.3s ease; /* Плавный переход при наведении */
+}
+
+footer a:hover {
+    color: #dddddd; /* Светло-серый при наведении (опционально) */
+}
+a,body {
+    color: #000}
+body {
+    margin: 0;
+    font-family: Arial,sans-serif;
+    background-color: #fff;
+    line-height: 1.6}
+a {
+    text-decoration: none;
+    transition: color .3s ease}
+.link-record a:hover,a:hover {
+    color: #333}
+.fixed-header {
+    border-bottom: 1px solid #ddd}
+.logo {
+    font-size: 2rem;
+    font-weight: 700}
+.nav-links a {
+    margin-left: 25px;
+    font-size: 1.2rem}
+main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px}
+.category-header {
+    text-align: left;
+    margin-top: 40px;
+    margin-bottom: 40px}
+.category-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    color: #333;
+    padding-top: 10vh}
+.category-header p {
+    font-size: 1.2rem;
+    color: #666}
+.records-list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px}
+.record-card {
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    padding: 25px;
+    text-align: left;
+    transition: transform .3s ease,box-shadow .3s ease}
+.record-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,.1)}
+.record-card h2 {
+    margin-top: 0;
+    font-size: 1.5rem;
+    color: #333}
+.record-card p {
+    margin: 15px 0;
+    font-size: 1.1rem;
+    color: #333}
+.record-meta {
+    margin-top: 20px;
+    font-size: 1rem;
+    color: #666}
+.tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 10px}
+.tag {
+    background-color: #e0e0e0;
+    color: #000;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: background-color .3s ease}
+.tag:hover {
+    background-color: #d0d0d0}
+footer {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 1.1rem}
+.fixed-header .nav-links a,.link-record a {
+    text-decoration: none;
+    transition: color .3s ease}
+.link-record a {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #000}
+.video-record iframe {
+    width: 100%;
+    height: 450px;
+    border: 0;
+    border-radius: 10px}
+.video-record img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover}
+.fixed-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,.1);
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    box-sizing: border-box;
+    padding: 20px 5vw}
+.fixed-header .logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    text-decoration: none}
+.fixed-header .nav-links {
+    display: flex;
+    gap: 30px}
+.fixed-header .nav-links a {
+    font-size: 1.2rem;
+    position: relative}
+.fixed-header .nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 100%;
+    height: 2px;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .3s ease;
+    background-color: #000}
+.fixed-header .nav-links a:hover::after {
+    transform: scaleX(1)}
+#categories-anchor,#tags-anchor {
+    margin-top: -120px;
+    padding-top: 120px}
+.fixed-header .logo:hover,.fixed-header .nav-links a:hover {
+    color: #333}
+.fixed-header .logo,.fixed-header .nav-links a {
+    color: #000}
+footer a {
+    color: #ffffff; /* Белый цвет текста */
+    text-decoration: none; /* Убираем подчеркивание */
+    transition: color 0.3s ease; /* Плавный переход при наведении */}
+footer a:hover {
+    color: #dddddd; /* Светло-серый при наведении (опционально) */}
+/* Стили для панели категорий */
+.categories-panel {
+    display: none; /* Скрыт по умолчанию */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%; /* На весь экран */
+    height: 100%; /* На весь экран */
+    background-color: rgba(0, 0, 0, 0.8); /* Полупрозрачный фон */
+    z-index: 1001; /* Выше других элементов */
+    overflow-y: auto; /* Прокрутка, если контент не помещается */}
+.panel-content {
+    background-color: #fff;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;}
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 2rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #000;}
+.category-panel-item {
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    color: #000; /* Черный текст */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Анимация при наведении */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19); /* Тени */}
+.category-panel-item h3 {
+    margin-bottom: 10px;
+    color: #000; /* Черный текст */}
+.category-panel-item p {
+    font-size: 1rem;
+    color: #000; /* Черный текст */}
+.category-panel-item.color-teal {
+    background-color: #008080; /* Цвет для категории "Основы дизайна" */}
+.category-panel-item.color-purple {
+    background-color: #800080; /* Цвет для категории "SMM" */}
+/* Добавьте другие цвета для остальных категорий аналогично */
+
+/* Эффект при наведении */
+.category-panel-item:hover {
+    transform: scale(1.05); /* Увеличение размера */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3), 0 12px 40px rgba(0, 0, 0, 0.25); /* Усиление теней */
+    color: #fff; /* Текст становится белым */}
+.category-panel-item:hover h3,
+.category-panel-item:hover p {
+    color: #fff; /* Текст становится белым */}
+.fixed-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1002; /* Убедитесь, что это значение больше, чем у панели категорий */
+    background-color: #fff; /* Добавьте фон, чтобы шапка была видна */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Тень для отделения от контента */}
+.categories-panel {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1001; /* Меньше, чем у шапки */
+    overflow-y: auto;}
+.categories-panel {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1001;
+    overflow-y: auto;}
+.panel-content {
+    background-color: #fff;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    padding-top: 10vh;
+    padding-bottom: 10vh;
+    box-sizing: border-box;}
+/* Стили для кнопки "Категории" */
+#menu-button {
+    display: inline-block;
+    padding: 10px 20px; /* Внутренние отступы */
+    font-size: 1rem; /* Размер текста */
+    color: #fff; /* Цвет текста */
+    background-color: #007bff; /* Фоновый цвет */
+    border: none; /* Убираем границу */
+    border-radius: 5px; /* Закругленные углы */
+    cursor: pointer; /* Курсор указывает на кликабельность */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Плавные переходы */}
+/* При активации кнопки (нажатии) */
+#menu-button:active {
+    transform: scale(0.95); /* Небольшое уменьшение */}
+/* Стили для кнопки, чтобы она выглядела как ссылка */
+#menu-button {
+    background: none; /* Убираем фон */
+    border: none; /* Убираем границу */
+    font-size: 1.2rem; /* Размер текста как у ссылок */
+    color: #000; /* Цвет текста как у ссылок */
+    text-decoration: none; /* Убираем подчеркивание */
+    cursor: pointer; /* Добавляем указатель курсора */
+    display: inline-flex; /* Выравниваем текст и стрелку */
+    align-items: center; /* Вертикальное центрирование */
+    gap: 5px; /* Отступ между текстом и стрелкой */
+    padding: 0; /* Убираем отступы */}
+#menu-button:hover {
+    color: #333; /* Цвет при наведении */}
+/* Стили для символа стрелки */
+.arrow-icon {
+    transition: transform 0.3s ease; /* Плавный поворот стрелки */}
+/* Поворот стрелки при активном состоянии */
+#menu-button.active .arrow-icon {
+    transform: rotate(180deg); /* Переворачиваем стрелку на 180 градусов */}
+.categories-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin: 0 auto;
+    max-width: 1200px;}
+.categories-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* По умолчанию 3 колонки */
+    gap: 20px;
+    width: 100%;}
+.fixed-header .logo:hover,.fixed-header .nav-links a:hover,body {
+    color: #333}
+.tag-cloud a:hover {
+    color: #fff;
+    border-color: #333;
+    transform: scale(1.1);
+    text-decoration: none}
+.categories-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin: 0 auto;
+    max-width: 1200px}
+.categories-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 20px;
+    width: 100%}
+.category-item {
+    position: relative;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px rgba(0,0,0,.1),-3px -3px 5px rgba(255,255,255,.8);
+    padding: 20px;
+    text-align: left;
+    transition: transform .3s ease,box-shadow .3s ease;
+    overflow: hidden}
+.category-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 8px 8px 15px rgba(0,0,0,.15),-5px -5px 10px rgba(255,255,255,.9)}
+.category-item::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 15px;
+    width: 40px;
+    height: 40px;
+    transform: rotate(45deg);
+    transform-origin: 100%0;
+    box-shadow: 2px 2px 5px rgba(0,0,0,.1);
+    z-index: 1}
+.color-teal::before {
+    background: linear-gradient(135deg,#009688,#00796b)}
+.color-purple::before {
+    background: linear-gradient(135deg,#673ab7,#512da8)}
+.color-orange::before {
+    background: linear-gradient(135deg,#ff9800,#e67e22)}
+.color-blue::before {
+    background: linear-gradient(135deg,#2196f3,#1976d2)}
+.color-yellow::before {
+    background: linear-gradient(135deg,#ffeb3b,#fdd835)}
+.color-green::before {
+    background: linear-gradient(135deg,#4caf50,#388e3c)}
+.color-pink::before {
+    background: linear-gradient(135deg,#e91e63,#c2185b)}
+.color-gray::before {
+    background: linear-gradient(135deg,#9e9e9e,#757575)}
+.color-red::before {
+    background: linear-gradient(135deg,#f44336,#d32f2f)}
+.color-indigo::before {
+    background: linear-gradient(135deg,#3f51b5,#303f9f)}
+.color-cyan::before {
+    background: linear-gradient(135deg,#00bcd4,#0097a7)}
+.color-brown::before {
+    background: linear-gradient(135deg,#795548,#5d4037)}
+.color-light-blue::before {
+    background: linear-gradient(135deg,#03a9f4,#0288d1)}
+.category-item a {
+    text-decoration: none;
+    color: inherit}
+.item-count {
+    font-size: .8rem;
+    color: #666;
+    background-color: #e0e0e0;
+    padding: 2px 8px;
+    border-radius: 15px;
+    margin-left: 10px}
+.additional-info {
+    font-size: .9rem;
+    color: #777;
+    display: block;
+    margin-top: 10px}
+.color-teal {
+    border-top: 5px solid #009688}
+.color-purple {
+    border-top: 5px solid #673ab7}
+.color-orange {
+    border-top: 5px solid #ff9800}
+.color-blue {
+    border-top: 5px solid #2196f3}
+.color-yellow {
+    border-top: 5px solid #ffeb3b}
+.color-green {
+    border-top: 5px solid #4caf50}
+.color-pink {
+    border-top: 5px solid #e91e63}
+.color-gray {
+    border-top: 5px solid #9e9e9e}
+.color-red {
+    border-top: 5px solid #f44336}
+.color-indigo {
+    border-top: 5px solid #3f51b5}
+.color-cyan {
+    border-top: 5px solid #00bcd4}
+.color-brown {
+    border-top: 5px solid #795548}
+.color-light-blue {
+    border-top: 5px solid #03a9f4}
+/* Стили для кнопки "Теги" */
+#tags-button {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 0;}
+#tags-button:hover {
+    color: #333;}
+/* Стили для символа стрелки */
+.arrow-icon {
+    transition: transform 0.3s ease;}
+/* Поворот стрелки при активном состоянии */
+#tags-button.active .arrow-icon {
+    transform: rotate(180deg);}
+/* Стили для панели тегов */
+#tags-button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;}
+#tags-button:active {
+    transform: scale(0.95);}
+#tags-button {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 0;}
+.tag-cloud {
+    position: fixed;
+    padding-top: 10vh;
+    display: inline-block; /* Используйте flex, если хотите сохранить гибкую раскладку */
+    flex-wrap: wrap; /* Разрешаем перенос элементов на новую строку */
+    gap: 5vw; /* Расстояние между элементами */
+    line-height:3; /* Устанавливаем межстрочный интервал */
+    background-color:#fff;
+    width: 80%;
+    height: 90%;
+    padding-left: 10vw;
+    padding-right: 10vw;
+}
+.tag-cloud a{
+    font-size: 1.2rem;
+}
+/* Добавляем случайные отступы слева */
+.tag-cloud a:nth-child(odd) {
+    margin-left: 1vw; /* Небольшой отступ для нечетных элементов */
+}
+
+.tag-cloud a:nth-child(even) {
+    margin-left: 1vw; /* Больший отступ для четных элементов */
+}
+.tag-cloud a {
+    position: relative;
+    padding: 10px 20px;
+    border: 1px solid #333;
+    border-radius: 20px;
+    font-size: 1.15rem;
+    color: #333;
+    text-decoration: none;
+    transition: color .3s ease,border-color .3s ease,transform .3s ease,background-color .3s ease;
+    background-color: transparent;
+    white-space: nowrap;
+}
+
+/* Медиа-запрос для средних экранов */
+@media (max-width: 1024px) {
+    .categories-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 колонки */
+    }
+}
+
+/* Медиа-запрос для маленьких экранов */
+@media (max-width: 768px) {
+    .categories-grid {
+        grid-template-columns: 1fr; /* 1 колонка */
+    }
+}
+

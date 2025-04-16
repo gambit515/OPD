@@ -1,0 +1,10 @@
+<div class="list-widget">
+    {% for item in items %}
+    <div class="list-item">
+        <input type="text" name="{{ name }}-{{ forloop.counter0 }}-title" value="{{ item.title }}" placeholder="Название">
+        <textarea name="{{ name }}-{{ forloop.counter0 }}-description" placeholder="Описание">{{ item.description }}</textarea>
+        <button type="button" class="remove-item">Удалить</button>
+    </div>
+    {% endfor %}
+</div>
+<button type="button" class="add-item">Добавить элемент</button>

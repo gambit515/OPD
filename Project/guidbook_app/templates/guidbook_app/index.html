@@ -1,0 +1,105 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Гайд-бук</title>
+    <link rel="stylesheet" href="{% static 'guidbook_app/index.css' %}">
+</head>
+
+<body>
+    <header class="fixed-header">
+        <a href="#" class="logo">Гайд-бук</a>
+        <div class="nav-links">
+            <a href="#categories-anchor" class="nav-link">Категории</a>
+            <a href="#tags-anchor" class="nav-link">Теги</a>
+            <style>
+            /* Убираем рамку и другие стили по умолчанию */
+            .toggle-menu {
+                border: none; /* Убираем рамку */
+                background: none; /* Убираем фон */
+            }
+            </style>
+            <button class="nav-link toggle-menu">
+                <a href="{% url 'student_request' %}">Отправить работу</a>
+            </button>
+        </div>
+
+    </header>
+
+    <main>
+        <section class="intro">
+            <h2>Добро пожаловать в Гайд-бук! (Пока что АВТФ)</h2>
+            <p>Здесь вы найдете всю необходимую информацию по различным направлениям.</p>
+        </section>
+        <div id="categories-anchor"></div>
+        <div class="categories-wrapper">
+            <div class="categories-grid">
+                {% for category in categories %}
+                        <div class="category-item {{ category.color_class }}">
+                            <a href="{% url 'category_detail' category.slug %}">
+                                <h3>{{ category.name }} <span class="item-count">{{ category.item_count }}</span></h3>
+                                <!--<p>{{ category.description|truncatewords:8 }}</p>-->
+                                {{ category.description|safe }}
+                            </a>
+                        </div>
+                    {% endfor %}
+            </div>
+        </div>
+        <div id="tags-anchor"></div>
+        <div class="tag-cloud">
+            {% for tag in tags %}
+                <a href="{% url 'tag_detail' tag.slug %}">{{ tag.name }}</a>
+            {% endfor %}
+        </div>
+
+        
+    </main>
+    <footer>
+        <p>&copy; 2025 Гайд-бук. Все права защищены.</p>
+    </footer>
+    <script>
+        const colors = [
+            '#ff5722', // Оранжевый
+            '#03a9f4', // Голубой
+            '#4caf50', // Зеленый
+            '#9c27b0', // Фиолетовый
+            '#e91e63', // Розовый
+            '#ffc107', // Желтый
+            '#00bcd4', // Светло-голубой
+            '#673ab7', // Темно-фиолетовый
+            '#ff9800', // Ярко-оранжевый
+            '#009688'  // Бирюзовый
+        ];
+    
+
+        const tags = document.querySelectorAll('.tag-cloud a');
+    
+
+        tags.forEach(tag => {
+            tag.addEventListener('mouseenter', () => {
+                const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                tag.style.backgroundColor = randomColor;
+                tag.style.borderColor = randomColor;
+            });
+    
+            // Возвращаем исходные стили при уходе курсора
+            tag.addEventListener('mouseleave', () => {
+                tag.style.backgroundColor = 'transparent';
+                tag.style.borderColor = '#333';
+            });
+        });
+    </script>
+    <script>
+        function scrollToSection(section) {
+            const element = document.getElementById(section + '-anchor');
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+        </script>
+</body>
+
+</html>

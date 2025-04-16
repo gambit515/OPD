@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8010
+    volumes:
+      - .:/app  # Монтируем текущую директорию в контейнер
+    ports:
+      - "8010:8010"  # Открываем сайт на порту 8010

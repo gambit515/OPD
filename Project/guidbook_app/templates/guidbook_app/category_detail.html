@@ -1,0 +1,208 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список записей</title>
+    <link rel="stylesheet" href="{% static 'guidbook_app/category_detail.css' %}">
+</head>
+
+<body>
+<div class="wrapper">
+    <!--Фиксированная шапка -->
+
+    <header class="fixed-header">
+        <a href="/" class="logo">Гайд-бук</a>
+        <div class="nav-links">
+            <button id="menu-button" class="nav-link toggle-menu">
+                Категории <span class="arrow-icon">▼</span>
+            </button>
+            <button id="tags-button" class="nav-link toggle-menu">
+                Теги <span class="arrow-icon">▼</span>
+            </button>
+            <style>
+            /* Убираем рамку и другие стили по умолчанию */
+            .toggle-menu {
+                border: none; /* Убираем рамку */
+                background: none; /* Убираем фон */
+            }
+            </style>
+            <button class="nav-link toggle-menu">
+                <a href="{% url 'student_request' %}">Отправить работу</a>
+            </button>
+        </div>
+    </header>
+    <!-- Панель категорий -->
+    <div id="categories-panel" class="categories-panel">
+        <div class="panel-content">
+            <button id="close-panel" class="close-button">&times;</button>
+            <div id="categories-anchor"></div>
+            <div class="categories-wrapper">
+                <div class="categories-grid">
+                    {% for category in categories %}
+                        <div class="category-item {{ category.color_class }}">
+                            <a href="{% url 'category_detail' category.slug %}">
+                                <h3>{{ category.name }} <span class="item-count">{{ category.item_count }}</span></h3>
+                                <!--<p>{{ category.description|truncatewords:8 }}</p>-->
+                                {{ category.description|safe }}
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="tag-cloud" id="tags-panel" style="display: none;">
+    {% for tag in tags %}
+        <a href="{% url 'tag_detail' tag.slug %}" class="tag">{{ tag.name }}</a>
+    {% endfor %}
+    </div>
+    <main>
+        <section class="category-header">
+            <h1>{{category.name}}</h1>
+            <p>{{category.description|safe}}</p>
+        </section>
+        <section class="records-list">
+            {% for record in records %}
+                <div class="record-card">
+                    <h2><a href="{% url 'record_detail' pk=record.pk %}">{{record.title}}</a></h2>
+                    <p>{{record.short_content|safe}}</p>
+                    <div class="record-meta">
+                        <span class="date">Дата: {{record.created_at}}</span>
+                        <div class="tags-container">
+                            <span class="tags">
+                                {% for tag in record.tags.all %}
+                                    <!--<a href="#" class="tag">Программирование</a>
+                                    <a href="#" class="tag">Python</a>-->
+                                    <a href="{% url 'tag_detail' tag.slug %}" class="tag">{{tag.name}}</a>
+                                {% endfor %}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </section>
+        <script>
+            const colors = [
+            '#ff5722', // Оранжевый
+            '#03a9f4', // Голубой
+            '#4caf50', // Зеленый
+            '#9c27b0', // Фиолетовый
+            '#e91e63', // Розовый
+            '#ffc107', // Желтый
+            '#00bcd4', // Светло-голубой
+            '#673ab7', // Темно-фиолетовый
+            '#ff9800', // Ярко-оранжевый
+            '#009688'  // Бирюзовый
+        ];
+
+
+            // Добавляем обработчики событий для тегов
+            document.addEventListener("DOMContentLoaded", function () {
+                const tags = document.querySelectorAll('.tag');
+                tags.forEach(tag => {
+                    tag.addEventListener('mouseenter', () => {
+                        tag.style.borderColor = 'transparent';
+                        const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                        tag.style.backgroundColor = randomColor;
+                    });
+
+                    tag.addEventListener('mouseleave', () => {
+                        tag.style.backgroundColor = ''; // Возвращаем исходный цвет
+                        tag.style.borderColor = '#333';
+                    });
+                });
+            });
+        </script>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                // Получаем элементы
+                const menuButton = document.getElementById('menu-button');
+                const categoriesPanel = document.getElementById('categories-panel');
+                const tagsButton = document.getElementById('tags-button');
+                const tagsPanel = document.querySelector('.tag-cloud');
+
+                let isProcessing = false; // Флаг для предотвращения повторных кликов
+
+                // Функция для закрытия всех открытых панелей
+                function closeAllPanels() {
+                    categoriesPanel.style.display = 'none'; // Закрываем панель категорий
+                    tagsPanel.style.display = 'none';      // Закрываем панель тегов
+                    menuButton.classList.remove('active'); // Убираем активное состояние кнопки "Категории"
+                    tagsButton.classList.remove('active'); // Убираем активное состояние кнопки "Теги"
+                }
+
+                // Обработчик для кнопки "Категории"
+                menuButton.addEventListener('click', () => {
+                    if (isProcessing) return; // Если уже выполняется действие, игнорируем клик
+                    isProcessing = true; // Блокируем обработку новых кликов
+
+                    if (categoriesPanel.style.display === 'block') {
+                        closeAllPanels(); // Если панель категорий уже открыта, закрываем её
+                    } else {
+                        closeAllPanels(); // Закрываем все панели
+                        categoriesPanel.style.display = 'block'; // Открываем панель категорий
+                        menuButton.classList.add('active');     // Добавляем активное состояние кнопке "Категории"
+                    }
+
+                    setTimeout(() => {
+                        isProcessing = false; // Разблокируем обработку кликов после завершения действия
+                    }, 300); // Задержка в 300мс (можно настроить)
+                });
+
+                // Обработчик для кнопки "Теги"
+                tagsButton.addEventListener('click', () => {
+                    if (isProcessing) return; // Если уже выполняется действие, игнорируем клик
+                    isProcessing = true; // Блокируем обработку новых кликов
+
+                    if (tagsPanel.style.display === 'block') {
+                        closeAllPanels(); // Если панель тегов уже открыта, закрываем её
+                    } else {
+                        closeAllPanels(); // Закрываем все панели
+                        tagsPanel.style.display = 'block';  // Открываем панель тегов
+                        tagsButton.classList.add('active'); // Добавляем активное состояние кнопке "Теги"
+                    }
+
+                    setTimeout(() => {
+                        isProcessing = false; // Разблокируем обработку кликов после завершения действия
+                    }, 300); // Задержка в 300мс (можно настроить)
+                });
+
+                // Закрытие панели категорий при клике вне её содержимого
+                document.addEventListener('click', (event) => {
+                    if (
+                        categoriesPanel.style.display === 'block' &&
+                        !categoriesPanel.contains(event.target) &&
+                        event.target !== menuButton
+                    ) {
+                        closeAllPanels();
+                    }
+                });
+
+                // Закрытие панели тегов при клике вне её содержимого
+                document.addEventListener('click', (event) => {
+                    if (
+                        tagsPanel.style.display === 'block' &&
+                        !tagsPanel.contains(event.target) &&
+                        event.target !== tagsButton
+                    ) {
+                        closeAllPanels();
+                    }
+                });
+            });
+
+        </script>
+
+
+    </main>
+
+    <!-- Подвал -->
+    {% include "guidbook_app//footer.html" %}
+</div>
+</body>
+
+</html>

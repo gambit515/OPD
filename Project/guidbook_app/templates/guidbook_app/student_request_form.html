@@ -1,0 +1,334 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список записей</title>
+    <link rel="stylesheet" href="{% static 'guidbook_app/category_detail.css' %}">
+</head>
+<body>
+<div class="wrapper">
+    <!--Фиксированная шапка -->
+
+    <header class="fixed-header">
+        <a href="/" class="logo">Гайд-бук</a>
+        <div class="nav-links">
+            <button id="menu-button" class="nav-link toggle-menu">
+                Категории <span class="arrow-icon">▼</span>
+            </button>
+            <button id="tags-button" class="nav-link toggle-menu">
+                Теги <span class="arrow-icon">▼</span>
+            </button>
+            <style>
+            /* Убираем рамку и другие стили по умолчанию */
+            .toggle-menu {
+                border: none; /* Убираем рамку */
+                background: none; /* Убираем фон */
+            }
+            </style>
+            <button class="nav-link toggle-menu">
+                <a href="{% url 'student_request' %}">Отправить работу</a>
+            </button>
+        </div>
+    </header>
+    <!-- Панель категорий -->
+    <div id="categories-panel" class="categories-panel">
+        <div class="panel-content">
+            <button id="close-panel" class="close-button">&times;</button>
+            <div id="categories-anchor"></div>
+            <div class="categories-wrapper">
+                <div class="categories-grid">
+                    {% for category in categories %}
+                        <div class="category-item {{ category.color_class }}">
+                            <a href="{% url 'category_detail' category.slug %}">
+                                <h3>{{ category.name }} <span class="item-count">{{ category.item_count }}</span></h3>
+                                <!--<p>{{ category.description|truncatewords:8 }}</p>-->
+                                {{ category.description|safe }}
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="tag-cloud" id="tags-panel" style="display: none;">
+    {% for tag in tags %}
+        <a href="{% url 'tag_detail' tag.slug %}" class="tag">{{ tag.name }}</a>
+    {% endfor %}
+    </div>
+
+    <main>
+        <h1 class="form-title">Запрос на создание статьи</h1>
+<form method="post" enctype="multipart/form-data" class="request-form">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="{{ form.faculty.id_for_label }}" class="required-label">{{ form.faculty.label }}</label>
+        {{ form.faculty }}
+    </div>
+    <div class="form-group">
+        <label for="{{ form.course.id_for_label }}" class="required-label">{{ form.course.label }}</label>
+        {{ form.course }}
+    </div>
+    <div class="form-group">
+        <label for="{{ form.subject.id_for_label }}" class="required-label">{{ form.subject.label }}</label>
+        {{ form.subject }}
+    </div>
+    <div class="form-group">
+        <label for="{{ form.work_type.id_for_label }}" class="required-label">{{ form.work_type.label }}</label>
+        {{ form.work_type }}
+    </div>
+    <div class="form-group">
+        <label for="{{ form.student_name.id_for_label }}" class="required-label">{{ form.student_name.label }}</label>
+        {{ form.student_name }}
+    </div>
+    <div class="form-group">
+        <label for="{{ form.contact_info.id_for_label }}" class="required-label">{{ form.contact_info.label }}</label>
+        {{ form.contact_info }}
+    </div>
+    <div class="form-group">
+        <label for="{{ form.file.id_for_label }}" class="required-label">{{ form.file.label }}</label>
+        {{ form.file }}
+    </div>
+    <button type="submit" class="btn-submit">Отправить</button>
+</form>
+
+<style>
+    /* Центрирование заголовка */
+    .form-title {
+        text-align: center;
+        font-size: 24px;
+        margin-bottom: 20px;
+        color: #333;
+    }
+
+    /* Общие стили для формы */
+    .request-form {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Стили для групп полей */
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    /* Стили для меток */
+    .required-label {
+        font-weight: bold;
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    /* Добавляем звездочку к обязательным полям */
+    .required-label::after {
+        content: " *";
+        color: red;
+    }
+
+    /* Стили для полей ввода */
+    input[type="text"], input[type="file"] {
+        width: 96%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+    }
+
+    /* Стили для кнопки отправки */
+    .btn-submit {
+        display: inline-block;
+        width: 100%;
+        padding: 10px;
+        background-color: black;
+        color: white;
+        font-size: 16px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        text-align: center;
+    }
+
+    .btn-submit:hover {
+        background-color: grey;
+    }
+
+    /* Адаптация под мобильные устройства */
+    @media (max-width: 768px) {
+        .form-title {
+            font-size: 20px;
+        }
+
+        .request-form {
+            padding: 15px;
+        }
+
+        input[type="text"], input[type="file"] {
+            font-size: 14px;
+            padding: 8px;
+        }
+
+        .btn-submit {
+            font-size: 14px;
+            padding: 8px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .form-title {
+            font-size: 18px;
+        }
+
+        .request-form {
+            padding: 10px;
+        }
+
+        input[type="text"], input[type="file"] {
+            font-size: 12px;
+            padding: 6px;
+        }
+
+        .btn-submit {
+            font-size: 12px;
+            padding: 6px;
+        }
+    }
+
+    /* Стили для ошибок валидации */
+    ul.errorlist {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        color: red;
+        font-size: 14px;
+    }
+</style>
+        <script>
+            const colors = [
+            '#ff5722', // Оранжевый
+            '#03a9f4', // Голубой
+            '#4caf50', // Зеленый
+            '#9c27b0', // Фиолетовый
+            '#e91e63', // Розовый
+            '#ffc107', // Желтый
+            '#00bcd4', // Светло-голубой
+            '#673ab7', // Темно-фиолетовый
+            '#ff9800', // Ярко-оранжевый
+            '#009688'  // Бирюзовый
+        ];
+
+
+            // Добавляем обработчики событий для тегов
+            document.addEventListener("DOMContentLoaded", function () {
+                const tags = document.querySelectorAll('.tag');
+                tags.forEach(tag => {
+                    tag.addEventListener('mouseenter', () => {
+                        tag.style.borderColor = 'transparent';
+                        const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                        tag.style.backgroundColor = randomColor;
+                    });
+
+                    tag.addEventListener('mouseleave', () => {
+                        tag.style.backgroundColor = ''; // Возвращаем исходный цвет
+                        tag.style.borderColor = '#333';
+                    });
+                });
+            });
+        </script>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                // Получаем элементы
+                const menuButton = document.getElementById('menu-button');
+                const categoriesPanel = document.getElementById('categories-panel');
+                const tagsButton = document.getElementById('tags-button');
+                const tagsPanel = document.querySelector('.tag-cloud');
+
+                let isProcessing = false; // Флаг для предотвращения повторных кликов
+
+                // Функция для закрытия всех открытых панелей
+                function closeAllPanels() {
+                    categoriesPanel.style.display = 'none'; // Закрываем панель категорий
+                    tagsPanel.style.display = 'none';      // Закрываем панель тегов
+                    menuButton.classList.remove('active'); // Убираем активное состояние кнопки "Категории"
+                    tagsButton.classList.remove('active'); // Убираем активное состояние кнопки "Теги"
+                }
+
+                // Обработчик для кнопки "Категории"
+                menuButton.addEventListener('click', () => {
+                    if (isProcessing) return; // Если уже выполняется действие, игнорируем клик
+                    isProcessing = true; // Блокируем обработку новых кликов
+
+                    if (categoriesPanel.style.display === 'block') {
+                        closeAllPanels(); // Если панель категорий уже открыта, закрываем её
+                    } else {
+                        closeAllPanels(); // Закрываем все панели
+                        categoriesPanel.style.display = 'block'; // Открываем панель категорий
+                        menuButton.classList.add('active');     // Добавляем активное состояние кнопке "Категории"
+                    }
+
+                    setTimeout(() => {
+                        isProcessing = false; // Разблокируем обработку кликов после завершения действия
+                    }, 300); // Задержка в 300мс (можно настроить)
+                });
+
+                // Обработчик для кнопки "Теги"
+                tagsButton.addEventListener('click', () => {
+                    if (isProcessing) return; // Если уже выполняется действие, игнорируем клик
+                    isProcessing = true; // Блокируем обработку новых кликов
+
+                    if (tagsPanel.style.display === 'block') {
+                        closeAllPanels(); // Если панель тегов уже открыта, закрываем её
+                    } else {
+                        closeAllPanels(); // Закрываем все панели
+                        tagsPanel.style.display = 'block';  // Открываем панель тегов
+                        tagsButton.classList.add('active'); // Добавляем активное состояние кнопке "Теги"
+                    }
+
+                    setTimeout(() => {
+                        isProcessing = false; // Разблокируем обработку кликов после завершения действия
+                    }, 300); // Задержка в 300мс (можно настроить)
+                });
+
+                // Закрытие панели категорий при клике вне её содержимого
+                document.addEventListener('click', (event) => {
+                    if (
+                        categoriesPanel.style.display === 'block' &&
+                        !categoriesPanel.contains(event.target) &&
+                        event.target !== menuButton
+                    ) {
+                        closeAllPanels();
+                    }
+                });
+
+                // Закрытие панели тегов при клике вне её содержимого
+                document.addEventListener('click', (event) => {
+                    if (
+                        tagsPanel.style.display === 'block' &&
+                        !tagsPanel.contains(event.target) &&
+                        event.target !== tagsButton
+                    ) {
+                        closeAllPanels();
+                    }
+                });
+            });
+
+        </script>
+
+
+    </main>
+
+    <!-- Подвал -->
+    {% include "guidbook_app//footer.html" %}
+    </div>
+</body>
+
+</html>
