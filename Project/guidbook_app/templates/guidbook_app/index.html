@@ -15,16 +15,7 @@
         <div class="nav-links">
             <a href="#categories-anchor" class="nav-link">Категории</a>
             <a href="#tags-anchor" class="nav-link">Теги</a>
-            <style>
-            /* Убираем рамку и другие стили по умолчанию */
-            .toggle-menu {
-                border: none; /* Убираем рамку */
-                background: none; /* Убираем фон */
-            }
-            </style>
-            <button class="nav-link toggle-menu">
-                <a href="{% url 'student_request' %}">Отправить работу</a>
-            </button>
+
         </div>
 
     </header>
@@ -32,7 +23,9 @@
     <main>
         <section class="intro">
             <h2>Добро пожаловать в Гайд-бук! (Пока что АВТФ)</h2>
+
             <p>Здесь вы найдете всю необходимую информацию по различным направлениям.</p>
+            <h2><a style="color:black;font-size:1.4rem " href="{% url 'student_request' %}">А здесь вы можете добавить новый материал</a></h2>
         </section>
         <div id="categories-anchor"></div>
         <div class="categories-wrapper">
