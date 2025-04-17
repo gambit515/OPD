@@ -10,7 +10,7 @@
 </head>
 
 <body>
-<div class="wrapper">
+
     <!--Фиксированная шапка -->
 
     <header class="fixed-header">
@@ -70,7 +70,7 @@
             {% for record in records %}
                 <div class="record-card">
                     <h2><a href="{% url 'record_detail' pk=record.pk %}">{{record.title}}</a></h2>
-                    <p>{{record.short_content|safe}}</p>
+                    <p class="video-record">{{record.short_content|safe}}</p>
                     <div class="record-meta">
                         <span class="date">Дата: {{record.created_at}}</span>
                         <div class="tags-container">
@@ -201,8 +201,8 @@
     </main>
 
     <!-- Подвал -->
-    {% include "guidbook_app//footer.html" %}
-</div>
+
+
 </body>
 
 </html>
